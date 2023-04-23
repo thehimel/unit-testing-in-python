@@ -36,10 +36,14 @@ our test passing again, or in the green.
 
 ## Basic tests and assertions
 
+### Sources
+
+* [mapmaker_start.py](https://github.com/thehimel/dockerized-pytest-course/blob/master/scripts/chp2/video2/mapmaker_start.py)
+* [test_mapmaker_start.py](https://github.com/thehimel/dockerized-pytest-course/blob/master/tests/chp2/video2/test_mapmaker_start.py)
+
 ```python
 # Author: coding-geographies
 
-# Source https://github.com/thehimel/dockerized-pytest-course/blob/master/scripts/chp2/video2/mapmaker_start.py
 class Point():
     def __init__(self, name, latitude, longitude):
         self.name = name
@@ -50,10 +54,171 @@ class Point():
     def get_lat_long(self):
         return (self.latitude, self.longitude)
 
-# Source: https://github.com/thehimel/dockerized-pytest-course/blob/master/tests/chp2/video2/test_mapmaker_start.py
 def test_make_one_point():
     p1 = Point("Dakar", 14.7167, 17.4677)
     assert p1.get_lat_long() == (14.7167, 17.4677)
 
 # pytest -k test_make_one_point
+```
+
+## Exceptions
+
+### Sources
+
+* [mapmaker_solution.py](https://github.com/thehimel/dockerized-pytest-course/blob/final-state-per-chapter/scripts/chp2/video5/mapmaker_solution.py)
+* [test_chp2_solution.py](https://github.com/thehimel/dockerized-pytest-course/blob/final-state-per-chapter/tests/chp2/video5/test_chp2_solution.py)
+
+```python
+# Author: coding-geographies
+import pytest
+
+class Point():
+    def __init__(self, name, latitude, longitude):
+        if not isinstance(name, str):
+            raise ValueError("City name provided must be a string")
+        self.name = name
+
+        if not (-90 <= latitude <= 90) or not (-180 <= longitude <= 180):
+            raise ValueError("Invalid latitude, longitude combination.")
+        self.latitude = latitude
+        self.longitude = longitude
+
+
+    def get_lat_long(self):
+        return (self.latitude, self.longitude)
+
+
+def test_invalid_point_generation():
+    with pytest.raises(ValueError) as exp:
+        Point("Senegal", 99.6937, -189.44406)
+    assert str(exp.value) == "Invalid latitude, longitude combination."
+
+    with pytest.raises(ValueError) as exp:
+        Point(5, 12.11386, -55.08269)
+    assert str(exp.value) == 'City name provided must be a string'
+```
+
+## Happy path testing
+
+![img.png](hpt.png)
+![img.png](spt.png)
+
+### Sources
+
+* [test_happy_path_end.py](https://github.com/thehimel/dockerized-pytest-course/blob/final-state-per-chapter/tests/chp2/video6/test_happy_path_end.py)
+
+```python
+# Author: coding-geographies
+import pytest
+import csv
+
+
+def csv_reader(file_location):
+    with open(file_location, mode='r') as csv_file:
+        data = [line for line in csv.DictReader(csv_file)]
+        for row in data:
+            try:
+                row['Lat'] = float(row['Lat'])
+                row['Long'] = float(row['Long'])
+                row['Altitude'] = float(row['Altitude'])
+            except Exception as exp:
+                raise ValueError(str(exp))
+
+        return data
+
+@pytest.fixture(scope="module")
+def city_list_location():
+    return 'tests/resources/cities/clean_map.csv'
+
+
+@pytest.fixture(scope="module")
+def process_data(city_list_location):
+    yield csv_reader(city_list_location)
+
+
+def test_csv_reader_header_fields(process_data):
+    """
+    Happy Path test to make sure the processed data
+    contains the right header fields
+    """
+    # helper function imported from conftest.py to import file data with our csv reader
+    data = process_data
+    header_fields = list(data[0].keys())
+    assert header_fields == [
+            'Country',
+            'City',
+            'State_Or_Province',
+            'Lat',
+            'Long',
+            'Altitude'
+            ]
+
+
+def test_csv_reader_data_contents(process_data):
+    """
+    Happy Path Test to examine that each row
+    had the appropriate data type per field
+    """
+    data = process_data
+
+    # Check row types
+    for row in data:
+        assert(isinstance(row['Country'], str))
+        assert(isinstance(row['City'], str))
+        assert(isinstance(row['State_Or_Province'], str))
+        assert(isinstance(row['Lat'], float))
+        assert(isinstance(row['Long'], float))
+        assert(isinstance(row['Altitude'], float))
+
+    # Basic data checks
+    assert len(data) == 180  # We have collected 180 rows
+    assert data[0]['Country'] == 'Andorra'
+    assert data[106]['Country'] == 'Japan'
+```
+
+## Sad path testing
+
+### Sources
+
+* [data_processor_end.py](https://github.com/thehimel/dockerized-pytest-course/blob/final-state-per-chapter/scripts/chp2/video7/data_processor_end.py)
+* [test_sad_path_end.py](https://github.com/thehimel/dockerized-pytest-course/blob/final-state-per-chapter/tests/chp2/video7/test_sad_path_end.py)
+
+```python
+# Author: coding-geographies
+import pytest
+import csv
+import json
+
+
+def csv_reader(file_location):
+    with open(file_location, mode='r') as csv_file:
+        data = [line for line in csv.DictReader(csv_file)]
+        for row in data:
+            try:
+                row['Lat'] = float(row['Lat'])
+                row['Long'] = float(row['Long'])
+                row['Altitude'] = float(row['Altitude'])
+            except Exception as exp:
+                raise ValueError('Invalid input: ' + str(exp))
+
+        return data
+
+
+def json_reader(file_location):
+    with open(file_location) as f:
+        return json.load(f)
+
+
+@pytest.fixture(scope="function")
+def city_list_location_malformed():
+    return 'tests/resources/cities/malformed_map.csv'
+
+
+def test_csv_reader_malformed_data_contents(city_list_location_malformed):
+    """
+    Sad Path Test
+    """
+    with pytest.raises(ValueError) as exp:
+        csv_reader(city_list_location_malformed)
+    assert str(exp.value) == "Invalid input: could not convert string to float: 'not_an_altitude'"
 ```
