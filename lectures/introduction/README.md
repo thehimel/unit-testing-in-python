@@ -2,7 +2,7 @@
 
 ## Python unit testing with pytest
 
-![img.png](introduction.png)
+![img.png](images/introduction.png)
 
 - Photo credit: Linkedin
 - As a developer, you're constantly prioritizing what you should focus on and figuring out how today's work fits into
@@ -20,7 +20,7 @@ I will recommend potential sample projects as we make our way through the course
 
 ## Why pytest?
 
-![img.png](why-pytest.png)
+![img.png](images/why-pytest.png)
 
 - Photo credit: Linkedin
 - Pytest has a few critical features that set it apart from other testing frameworks, such as unittest, nose, and
@@ -50,3 +50,26 @@ when you visit their documentation website for detailed information and walkthro
 - To get to the core of each concept, I will walk you through how to implement it yourself. Toward the end, we will
 cover how to spot these pytest features in an already set up project. This will be a great skill to have as a developer
 because you'll inevitably have to maintain projects written by others and refactor them.
+
+## Roadmap
+
+![img.png](images/roadmap.png)
+
+- In this course we will focus on how to create and maintain a Python project's testing suite with pytest.
+- As we progress we will cover how to use this testing framework as you develop code in a test-driven development
+format, also known as TDD.
+- While there are several **types of tests such as unit, integration, linting, smoke, and functional tests**, we will
+focus on unit tests that cover the behavior we would like our source code methods to carry out.
+- We'll be covering the basics of the pytest framework's **core features, such as assertions, exceptions, fixtures, and
+parametrization**.
+- After that, we'll cover how to modularize common test utility functions with `conftest.py`. A file that is
+automatically available to all our tests in our test directory.
+- For the final section, I'll give you an existing pytest project and walk you through how to determine its
+functionality by looking at the test first. While doing this, we will use TDD to add in new functionality.
+- For this course I will be using a Docker container to run the project, and we'll be using Visual Studio as my
+interactive development environment, or IDE. For those of you who haven't used Docker, here's a quick rundown. Docker is
+a platform that allows you to create a container, a predefined environment that we can customize with certain
+- installations. A container's installed packages allow us to run our app, and the container itself runs on the
+installed Docker engine, which runs on your computer's operating system.
+- Feel free to skip around the videos as needed. If you're new to pytest though, feel free to stick with me from start
+to finish.
