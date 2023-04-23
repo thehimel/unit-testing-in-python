@@ -33,7 +33,7 @@ comparison operators** to test scenarios in your test functions. Unittest, on th
 assertion methods** for tests. While they are specific, they have changed in different versions of Python. This requires
 you to keep up with these changes and update your project with the proper method if the old version becomes deprecated.
 - To help you iterate through refactoring in a focused manner, pytest also gives you a powerful **command-line interface**
-to control the tests you'd like to run over or even `skip with markers`. This comes in handy when you are updating a
+to control the tests you'd like to run over or even **skip with markers**. This comes in handy when you are updating a
 portion of your test and don't want to run the entire test suite as you iterate through a small set of changes.
 - Furthermore, pytest uses **fixtures to automate test setup, teardown, and common test scenarios** for use in varying
 scopes. Fixtures also help you **share data and code between tests** that need common setup functions.
