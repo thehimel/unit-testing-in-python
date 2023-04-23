@@ -6,8 +6,8 @@
 
 ## Modularizing `conftest.py`
 
-![img.png](modularizing_conftest.png)
-![img.png](modularizing_conftest_with_import.png)
+![img.png](images/modularizing_conftest.png)
+![img.png](images/modularizing_conftest_with_import.png)
 
 - In the previous example, our `conftest.py` file held two fixtures but imagine what would happen if your system grew.
 This file could grow to contain a large amount of fixtures giving each one limited visibility.
