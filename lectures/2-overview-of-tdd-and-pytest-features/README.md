@@ -33,3 +33,27 @@ communicate behaviors explicitly as you develop, verifying that those behaviors 
 test-driven development method of writing tests strategically within this course with behaviors in mind. As we do this,
 we will cover basic debugging tips and tricks that will help us navigate the refactoring process as we attempt to get
 our test passing again, or in the green.
+
+## Basic tests and assertions
+
+```python
+# Author: coding-geographies
+
+# Source https://github.com/thehimel/dockerized-pytest-course/blob/master/scripts/chp2/video2/mapmaker_start.py
+class Point():
+    def __init__(self, name, latitude, longitude):
+        self.name = name
+        self.latitude = latitude
+        self.longitude = longitude
+
+
+    def get_lat_long(self):
+        return (self.latitude, self.longitude)
+
+# Source: https://github.com/thehimel/dockerized-pytest-course/blob/master/tests/chp2/video2/test_mapmaker_start.py
+def test_make_one_point():
+    p1 = Point("Dakar", 14.7167, 17.4677)
+    assert p1.get_lat_long() == (14.7167, 17.4677)
+
+# pytest -k test_make_one_point
+```
