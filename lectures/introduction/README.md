@@ -29,7 +29,7 @@ dependencies.
 where you need to **put your test into classes and handle class inheritance**. This is great because that means it'll be
 easier for you to define tests and also easier for the next programmer to come along and maintain your tests.
 - Additionally, pytest has an easy-to-read syntax, allowing you to use the **standard assert method in combination with
-comparison operators** to test scenarios in your test functions. Unittest, on the other hand, has over 1**0 different
+comparison operators** to test scenarios in your test functions. Unittest, on the other hand, has over **10 different
 assertion methods** for tests. While they are specific, they have changed in different versions of Python. This requires
 you to keep up with these changes and update your project with the proper method if the old version becomes deprecated.
 - To help you iterate through refactoring in a focused manner, pytest also gives you a powerful **command-line interface**
