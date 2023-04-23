@@ -2,7 +2,7 @@
 
 ## Overview of TDD
 
-![img.png](tdd.png)
+![img.png](images/tdd.png)
 
 - Before moving to our exercises, I want to take a step back to explain how test-driven development relates to unit
 testing. As we move through this section we will primarily use the lens of test-driven development to implement
@@ -100,8 +100,8 @@ def test_invalid_point_generation():
 
 ## Happy path testing
 
-![img.png](hpt.png)
-![img.png](spt.png)
+![img.png](images/hpt.png)
+![img.png](images/spt.png)
 
 ### Sources
 
