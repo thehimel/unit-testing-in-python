@@ -4,6 +4,7 @@
 
 ![img.png](introduction.png)
 
+- Photo credit: Linkedin
 - As a developer, you're constantly prioritizing what you should focus on and figuring out how today's work fits into
 those long-term goals. When building and testing Python projects from scratch, you may lose sight of this goal as you
 try to implement too many features at once. When maintaining a Legacy project, you may feel overwhelmed as you find it
@@ -21,6 +22,7 @@ I will recommend potential sample projects as we make our way through the course
 
 ![img.png](why-pytest.png)
 
+- Photo credit: Linkedin
 - Pytest has a few critical features that set it apart from other testing frameworks, such as unittest, nose, and
 doctest. There are many resources that account for the pros and cons between these four frameworks. For our purposes,
 I'll give you an overview of how they perform in comparison to pytest when used in larger projects with many
