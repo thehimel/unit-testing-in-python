@@ -41,7 +41,7 @@ scopes. Fixtures also help you **share data and code between tests** that need c
 which enables you to automate test functions to run over a variety of scenarios in one swoop. This makes pytest a great
 framework for complex testing scenarios, unlike doctest, which is great for basic tests, but it limits your test to
 doc strings.
-- Lastly, pytest is actively maintained. While it may be compelling for you to use nose, another framework,
+- Lastly, pytest is **actively maintained**. While it may be compelling for you to use nose, another framework,
 it's no longer actively managed. In comparison, the pytest open source project is actively developed, and even you can
 create issues for others to work on, or submit pull requests to improve the framework. You can read more about pytest
 when you visit their documentation website for detailed information and walkthroughs for the framework's capabilities.
